@@ -1,7 +1,7 @@
 require 'faker'
 
 # Create Users
-5.times do
+15.times do
   user = User.new(
     name: Faker::Name.name,
     email: Faker::Internet.email,
@@ -14,7 +14,7 @@ users = User.all
 
 
 # create topics
-15.times do
+25.times do
   Topic.create(
     name:  Faker::Lorem.sentence,
     description: Faker::Lorem.paragraph
@@ -24,7 +24,7 @@ topics = Topic.all
 
 
 # create posts
-50.times do
+500.times do
   Post.create(
     user:  users.sample,
     topic: topics.sample,
@@ -36,7 +36,7 @@ posts = Post.all
 
 # create comments
 
-100.times do
+2000.times do
 	Comment.create(
     # user: users.sample, # uncomment when Users are associated with Comments
 		post: posts.sample,
