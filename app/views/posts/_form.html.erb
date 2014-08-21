@@ -1,5 +1,18 @@
 <%= simple_form_for [topic, post], defaults: { wrapper_html: {class: 'form-group'}, input_html: {class: 'form-control'}, error_html: {class: 'form-group has-error'} } do |f| %>
   <%= f.input :title, required: false, placeholder: "Enter post title" %>
   <%= f.input :body, required: false, placeholder: "Enter post body", input_html: {rows: 8} %>
+
+  <% if post.image? %>
+    <div class="form-group">
+      <p>Current avatar</p>
+      <%= image_tag( post.image.thumb.url ) %>
+    </div>
+  <% end %>
+    <div class="form-group">
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+      <%= f.hidden_field :image_cache %>
+    </div>
+
   <%= f.button :submit, "Save", class: "btn btn-success" %>
 <% end %>
