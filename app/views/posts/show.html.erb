@@ -15,4 +15,16 @@
       <%= link_to "Edit", edit_topic_post_path(@topic, @post), class: 'btn btn-success' %>
     <% end %>
   </div>
+
+  <% @comments.each do |c| %>
+  <div class="media">
+    <p>
+      <b><%= c.user_id %> said:</b>
+    </p>
+    <p>
+      <%= c.body %>
+    </p>
+  </div>
+
+  <% end %>
 </div>

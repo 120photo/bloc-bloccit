@@ -38,7 +38,7 @@ posts = Post.all
 
 2000.times do
 	Comment.create(
-    # user: users.sample, # uncomment when Users are associated with Comments
+    user: users.sample, # uncomment when Users are associated with Comments
 		post: posts.sample,
 		body: Faker::Lorem.paragraph
 	)
