@@ -16,15 +16,17 @@
     <% end %>
   </div>
 
-  <% @comments.each do |c| %>
-  <div class="media">
-    <p>
-      <b><%= c.user_id %> said:</b>
-    </p>
-    <p>
-      <%= c.body %>
-    </p>
-  </div>
+<div class="col-md-12">
+<% @comments.each do |c| %>
+<div class="media">
+  <p>
+    <b><%= User.find(c.user_id).name %>'s 2¢:</b>
+  </p>
+  <p>
+    <%= c.body %>
+  </p>
+</div>
 
-  <% end %>
+<% end %>
+</div>
 </div>
