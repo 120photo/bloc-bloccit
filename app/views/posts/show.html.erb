@@ -17,16 +17,25 @@
   </div>
 
 <div class="col-md-12">
-<% @comments.each do |c| %>
+  <% if current_user %>
+  <%= render partial: 'comments/form', locals: { topic: @post.topic, post: @post, comment: Comment.new } %>
+  <br>
+  <% else %>
+  <p>
+    =p
+  </p>
+  <% end %>
+<% @comments.each do |comment| %>
 <div class="media">
   <p>
-    <b><%= User.find(c.user_id).name %>'s 2¢:</b>
+    <b><%= comment.user.name %>'s 2¢:</b>
   </p>
   <p>
-    <%= c.body %>
+    <%= comment.body %>
   </p>
 </div>
 
 <% end %>
+
 </div>
 </div>

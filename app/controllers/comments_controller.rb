@@ -1,9 +1,15 @@
 class CommentsController < ApplicationController
+  def show
+    @topic = Topic.find(params[:topic_id])
+    @post = Post.find(params[:params_id])
+    @comments = @post.comments
+  end
+
   def create
     @topic = Topic.find(params[:topic_id])
     @post = @topic.posts.find(params[:post_id])
-    # @comment = @post.comments.find(params[:id])
     @comment = current_user.comments.build(comment_params)
+    @comment.post = @post
 
     if @comment.save
       flash[:notice] = "2¢ notted"
@@ -17,6 +23,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permin(:body)
+    params.require(:comment).permit(:body)
   end
 end

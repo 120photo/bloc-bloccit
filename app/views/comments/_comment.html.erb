@@ -1,0 +1,11 @@
+<% @comments.each do |comment| %>
+<div class="media">
+  <p>
+    <b><%= comment.user.name %>'s 2¢:</b>
+  </p>
+  <p>
+    <%= comment.body %>
+  </p>
+</div>
+
+<% end %>
