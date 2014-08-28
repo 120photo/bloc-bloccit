@@ -1,8 +1,13 @@
 <% @comments.each do |comment| %>
 <div class="media">
-  <p>
+  <small>
     <b><%= comment.user.name %>'s 2¢:</b>
-  </p>
+  </small>
+  <small>
+    <% if policy(comment).destroy? %>
+      | <%= link_to "Delete", [@topic, @post, comment], method: :delete %>
+    <% end %>
+  </small>
   <p>
     <%= comment.body %>
   </p>
