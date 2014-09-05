@@ -1,10 +1,12 @@
 require 'rails_helper'
 
 describe Post do
+  include TestFactories
+
   describe "vote methods" do
 
     before do
-      @post = associate_post
+      @post = associated_post
       allow(@post).to receive(:create_vote)
       @post.save
       3.times { @post.votes.create(value: 1) }
@@ -30,22 +32,13 @@ describe Post do
     end
   end
 
-  def associate_post(options={})
-    post_options = {
-      title: 'Post title',
-      body: 'Post bodies must be pretty long.',
-      topic: Topic.create(name: 'Topic name'),
-      user: authenticated_user
-    }.merge(options)
-    Post.create(post_options)
-  end
-
-  def authenticated_user(options={})
-    user_options = {email: "email#{rand}@fake.com", password: 'password'}.merge(options)
-    user = User.new(user_options)
-    user.skip_confirmation!
-    user.save
-    user
+  describe '#create_vote' do
+    it "generates an up-vote when explicitly called" do
+      post = associated_post
+      expect( post.up_votes ).to eq (0)
+      post.create_vote
+      expect( post.up_votes ).to eq(1)
+    end
   end
 
 end
