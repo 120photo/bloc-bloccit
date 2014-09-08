@@ -1,5 +1,6 @@
 <% @comments.each do |comment| %>
-<div class="media">
+
+<%= content_tag :div, class: 'media', id: "comment-#{comment.id}" do %>
   <small>
     <b><%= comment.user.name %>'s 2¢:</b>
   </small>
@@ -11,6 +12,6 @@
   <p>
     <%= comment.body %>
   </p>
-</div>
+<% end %>
 
 <% end %>
