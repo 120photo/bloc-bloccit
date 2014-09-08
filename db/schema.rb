@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20140906024525) do
 
   create_table "topics", force: true do |t|
     t.string   "name"
-    t.boolean  "public"
+    t.boolean  "public",      default: true
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"

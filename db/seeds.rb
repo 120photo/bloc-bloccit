@@ -48,13 +48,6 @@ posts = Post.all
 	)
 end
 
-# # Updates first account with my info so I don't have to
-# # create a account every time I seed new data.
-# User.first.update_attributes(
-#   email: '120photo@gmail.com',
-#   password: 'password',
-# )
-
 # create admin user
 admin = User.new(
   name: 'Admin User',
@@ -87,5 +80,6 @@ member.save
 
 puts "Seed finished"
 puts "#{User.count} users created"
-puts "#{Post.count} post created"
+puts "#{Topic.count} topics creates"
+puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
