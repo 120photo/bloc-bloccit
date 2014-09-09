@@ -4,13 +4,13 @@ class FavoritesController < ApplicationController
     favorite = current_user.favorites.build(post: @post)
 
     authorize favorite
-    
+
     if favorite.save
       flash[:notice] = "Added to favorites"
       redirect_to [@post.topic, @post]
     else
       flash[:error] = "We could not add to your favorites, try again"
-      redirect_to :back
+      redirect_to [@post.topic, @post]
     end
   end
 
@@ -22,10 +22,10 @@ class FavoritesController < ApplicationController
 
     if favorite.destroy
       flash[:notice] = "Favorite was removed"
-      redirect_to :back
+      redirect_to [@post.topic, @post]
     else
       flash[:error] = "Nope, try again"
-      redirect_to :back
+      redirect_to [@post.topic, @post]
     end
   end
 end
