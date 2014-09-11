@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   resources :users, only: [:update, :show]
 
   resources :topics do
-    resources :posts, except: [:index]
+    resources :posts, except: [:index], controller: 'topics/posts'
   end
 
-  resources :post, only: [] do
+  resources :posts, only: [:index] do
     resources :comments, only: [:create, :destroy]
     resources :favorites, only: [:create, :destroy]
 
