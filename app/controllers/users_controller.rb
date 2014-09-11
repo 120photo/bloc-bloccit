@@ -16,6 +16,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def index
+    @users = User.top_rated.page(params[:page]).per(10)
+  end
+
   private
 
   def user_params
