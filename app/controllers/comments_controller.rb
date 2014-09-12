@@ -8,22 +8,27 @@ class CommentsController < ApplicationController
   end
 
   def create
-    # @topic = Topic.find(params[:topic_id])
     @post = Post.find(params[:post_id])
-    @comment = current_user.comments.build(comment_params)
+    @comments = @post.comments
+
+    @comment = current_user.comments.build( comment_params )
     @comment.post = @post
+    @new_comment = Comment.new
+
+    authorize @comment
 
     if @comment.save
       flash[:notice] = "2¢ notted"
-      redirect_to [@post.topic, @post]
     else
-      flash[:error] = "We were not paying attention so something went wrong, say that again..."
-      render :new
+      flash[:error] = "We were not paying attention so something went wrong, try again..."
+    end
+
+    respond_with(@comment) do |format|
+      format.html { redirect_to [@post.topic, @post] }
     end
   end
 
   def destroy
-    # @topic = Topic.find(params[:topic_id])
     @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
 
