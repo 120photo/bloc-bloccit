@@ -10,13 +10,12 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
     resources :favorites, only: [:create, :destroy]
 
-    post '/up-vote' => 'votes#up_vote', as: :up_vote
-    post '/down-vote' => 'votes#down_vote', as: :down_vote
-  end
+    resource :vote, as: :up_vote, path: '/up-vote', action: :up_vote, only: :create
+    resource :vote, as: :down_vote, path: '/down-vote', action: :down_vote, only: :create
 
-  # resources :posts do
-  #   resources :votes, onl
-  # end
+    # post '/up-vote' => 'votes#up_vote', as: :up_vote
+    # post '/down-vote' => 'votes#down_vote', as: :down_vote
+  end
 
   get 'about' => 'welcome#about'
 
