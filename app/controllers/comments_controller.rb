@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
     authorize @comment
 
     if @comment.save
-      flash[:notice] = "2¢ notted"
+      # flash[:notice] = "2¢ notted"
     else
       flash[:error] = "We were not paying attention so something went wrong, try again..."
     end
@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
 
     authorize @comment
     if @comment.destroy
-      flash[:notice] = "Comment was removed."
+      # flash[:notice] = "Comment was removed."
     else
       flash[:error] = "Commend could not be removed."
     end
